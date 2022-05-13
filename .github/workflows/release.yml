@@ -36,7 +36,7 @@ jobs:
           echo "BUTTERFLY_VERSION=${BUTTERFLY_VERSION}" >> $GITHUB_ENV
           BUTTERFLY_BUILD_NUMBER="${BASH_REMATCH[2]}"
           echo "BUTTERFLY_BUILD_NUMBER=${BUTTERFLY_BUILD_NUMBER}" >> $GITHUB_ENV
-          echo "::set-output name=git_pr_sha::${BUTTERFLY_BUILD_NUMBER}"
+          echo "::set-output name=build_number::${BUTTERFLY_BUILD_NUMBER}"
           git config --global user.email "ci@linwood.dev"
           git config --global user.name "Linwood CI"
       - name: Create changelog
