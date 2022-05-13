@@ -16,6 +16,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-20.04
+    outputs:
+      git_pr_sha: ${{ steps.setup.outputs.build_number }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -34,6 +36,7 @@ jobs:
           echo "BUTTERFLY_VERSION=${BUTTERFLY_VERSION}" >> $GITHUB_ENV
           BUTTERFLY_BUILD_NUMBER="${BASH_REMATCH[2]}"
           echo "BUTTERFLY_BUILD_NUMBER=${BUTTERFLY_BUILD_NUMBER}" >> $GITHUB_ENV
+          echo "::set-output name=git_pr_sha::${BUTTERFLY_BUILD_NUMBER}"
           git config --global user.email "ci@linwood.dev"
           git config --global user.name "Linwood CI"
       - name: Create changelog
@@ -123,7 +126,7 @@ jobs:
         if: ${{ github.event.inputs.stable }}
         run: |
           dart pub get -C tools
-          NEXT_BUILD_NUMBER=$(expr ${{ env.BUTTERFLY_BUILD_NUMBER }} + 1)
+          NEXT_BUILD_NUMBER=$(expr ${{ needs.release.outputs.build_number }} + 1)
           dart run tools/set_version.dart --build-number $NEXT_BUILD_NUMBER --no-changelog
 
           git add .
