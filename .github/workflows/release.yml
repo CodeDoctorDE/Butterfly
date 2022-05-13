@@ -17,7 +17,7 @@ jobs:
   release:
     runs-on: ubuntu-20.04
     outputs:
-      git_pr_sha: ${{ steps.setup.outputs.build_number }}
+      build_number: ${{ steps.setup.outputs.build_number }}
     steps:
       - uses: actions/checkout@v3
         with:
