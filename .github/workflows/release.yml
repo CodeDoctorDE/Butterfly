@@ -195,7 +195,7 @@ jobs:
           git add .
           git commit -m "Update version number"
           git push origin develop
-  update-version:
+  set-next-version:
     runs-on: ubuntu-20.04
     if:  ${{ github.event.inputs.stable == 'true' && github.ref == 'refs/heads/develop' }}
     needs:
