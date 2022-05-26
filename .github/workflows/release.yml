@@ -127,10 +127,10 @@ jobs:
         run: |
           git fetch
           git pull
-          git checkout develop
+          git checkout main
           git pull
-          git merge origin/main --strategy-option ours
-          git push origin develop
+          git merge origin/develop --strategy-option ours
+          git push origin main
       - name: Update version number
         if: ${{ github.event.inputs.stable != 'true' }}
         run: |
