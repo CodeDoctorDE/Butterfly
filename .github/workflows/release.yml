@@ -93,6 +93,7 @@ jobs:
           git config --global user.email "ci@linwood.dev"
           git config --global user.name "Linwood CI"
       - name: Set next version
+        if:  ${{ github.event.inputs.stable != 'true' || github.ref != 'refs/heads/develop' }}
         run: |
           git fetch
           git pull origin
@@ -150,7 +151,6 @@ jobs:
           git merge origin/main --strategy-option ours
           git push origin develop
   update-develop:
-    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-20.04
     needs:
       - release
@@ -177,6 +177,7 @@ jobs:
           git config --global user.email "ci@linwood.dev"
           git config --global user.name "Linwood CI"
       - name: Merge main
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           git fetch
           git pull
@@ -185,6 +186,7 @@ jobs:
           git merge origin/main --strategy-option ours
           git push origin develop
       - name: Update version number
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           git fetch
           git pull
@@ -194,6 +196,16 @@ jobs:
           git add .
           git commit -m "Update version number"
           git push origin develop
+      - name: Set next version
+        if:  ${{ github.event.inputs.stable == 'true' && github.ref == 'refs/heads/develop' }}
+        run: |
+          git fetch
+          git pull origin
+          dart pub get -C tools
+          dart run tools/set_version.dart --build-number increment ${{ github.event.inputs.next_version }} --no-changelog
+          git add .
+          git commit -m "Update Version to ${{ github.event.inputs.next_version }}"
+          git push origin
   notify:
     runs-on: ubuntu-20.04
     steps:
