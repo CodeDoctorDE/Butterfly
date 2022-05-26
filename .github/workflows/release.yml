@@ -122,6 +122,15 @@ jobs:
         run: |
           git config --global user.email "ci@linwood.dev"
           git config --global user.name "Linwood CI"
+      - name: Merge develop in main
+        if:  ${{ github.event.inputs.stable == 'true' && github.ref == 'refs/heads/develop' }}
+        run: |
+          git fetch
+          git pull
+          git checkout develop
+          git pull
+          git merge origin/main --strategy-option ours
+          git push origin develop
       - name: Update version number
         if: ${{ github.event.inputs.stable != 'true' }}
         run: |
