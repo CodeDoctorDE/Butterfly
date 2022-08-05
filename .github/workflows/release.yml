@@ -155,7 +155,7 @@ jobs:
           token: ${{ secrets.CI_PAT }}
       - name: Get flutter version
         run: |
-          FLUTTER_VERSION=$(cat FLUTTER_VERSION)
+          FLUTTER_VERSION=$(cat app/FLUTTER_VERSION)
           echo "FLUTTER_VERSION=${FLUTTER_VERSION}" >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -208,7 +208,7 @@ jobs:
           token: ${{ secrets.CI_PAT }}
       - name: Get flutter version
         run: |
-          FLUTTER_VERSION=$(cat FLUTTER_VERSION)
+          FLUTTER_VERSION=$(cat app/FLUTTER_VERSION)
           echo "FLUTTER_VERSION=${FLUTTER_VERSION}" >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -271,7 +271,7 @@ jobs:
           git config --global user.name "Linwood CI"
       - name: Get flutter version
         run: |
-          FLUTTER_VERSION=$(cat FLUTTER_VERSION)
+          FLUTTER_VERSION=$(cat app/FLUTTER_VERSION)
           echo "FLUTTER_VERSION=${FLUTTER_VERSION}" >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
