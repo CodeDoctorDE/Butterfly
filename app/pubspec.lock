@@ -506,7 +506,7 @@ packages:
       name: go_router
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.8"
+    version: "4.3.0"
   graphs:
     dependency: transitive
     description:
@@ -1218,7 +1218,7 @@ packages:
       name: window_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.6"
+    version: "0.2.7"
   xdg_directories:
     dependency: transitive
     description:
