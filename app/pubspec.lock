@@ -506,7 +506,7 @@ packages:
       name: go_router
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.8"
+    version: "4.5.1"
   graphs:
     dependency: transitive
     description:
@@ -905,7 +905,7 @@ packages:
       name: share_plus
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.10+1"
+    version: "4.4.0"
   share_plus_linux:
     dependency: transitive
     description:
